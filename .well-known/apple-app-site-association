@@ -1,0 +1,34 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "936RH3UPR3.wtf.iskra"
+        ],
+        "components": [
+          {
+            "/": "/@*",
+            "comment": "Человек: /@anya:matrix.org"
+          },
+          {
+            "/": "/!*",
+            "comment": "Комната по ID: /!id:server?via=…"
+          },
+          {
+            "/": "/#*",
+            "comment": "Комната по алиасу: /%23iskra:matrix.org"
+          },
+          {
+            "/": "/%23*",
+            "comment": "То же, если путь сверяется до раскодирования"
+          },
+          {
+            "/": "/",
+            "#": "?*",
+            "comment": "Хэш: /#iskra:matrix.org, /#/@anya:matrix.org"
+          }
+        ]
+      }
+    ]
+  }
+}

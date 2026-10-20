@@ -1,0 +1,112 @@
+/* Страница-открывалка: одна колонка по центру. Токены, кнопки, шапка и подвал — из site.css. */
+:root {
+  --avatar-ground: #a9a69b;
+  --avatar-ink: #fbfaf7;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --avatar-ground: #4a4943;
+    --avatar-ink: #ecebe4;
+  }
+}
+
+body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
+.link {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: clamp(2.5rem, 7vh, 4.5rem) 1rem clamp(3rem, 8vh, 5rem);
+}
+.link__card {
+  width: 100%; max-width: 24rem;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.link__card[hidden] { display: none; }
+
+/* Аватар: серый круг и заглавная первая буква, как пустой аватар в приложении. */
+.link__avatar {
+  width: 6rem; height: 6rem; border-radius: 50%; flex: none;
+  display: grid; place-items: center;
+  background: var(--avatar-ground); color: var(--avatar-ink);
+  font-size: 2.75rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1;
+  user-select: none;
+}
+.link__avatar--spark { background: var(--accent); color: var(--on-accent); box-shadow: 0 0 3rem var(--glow); }
+.link__avatar--spark svg { width: 46%; height: 46%; fill: currentColor; }
+
+.link__name {
+  margin-top: 1.25rem; max-width: 100%;
+  font-size: clamp(1.875rem, 6vw, 2.375rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1;
+  overflow-wrap: anywhere; text-wrap: balance;
+}
+.link__id {
+  margin-top: 0.375rem; max-width: 100%;
+  color: var(--color-text-secondary); font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+.link__lead { margin-top: 0.75rem; color: var(--color-text-secondary); text-wrap: balance; }
+.link__lead--warn { color: var(--orange); }
+.link__lead code { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 0.9em; background: var(--color-fill); padding: 0.1em 0.35em; border-radius: 0.3em; color: var(--color-text); }
+
+/* QR — как QrCode в iskra-web: чёрным по белому при любой теме, модули квадратами. */
+.link__qr {
+  margin: 2rem 0 0; width: min(15rem, 72vw);
+  padding: 1.125rem; border-radius: var(--radius-card);
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--color-separator);
+}
+.link__qr svg { width: 100%; height: auto; fill: #000; }
+
+.link__actions { display: flex; flex-direction: column; gap: 0.625rem; width: 100%; margin-top: 2rem; }
+.link__actions .button { width: 100%; }
+
+/* «У вас другое приложение?» — маленькая строчка, раскрывает список. */
+.others { width: 100%; margin-top: 1.25rem; }
+.others__toggle {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  border: 0; background: none; cursor: pointer; padding: 0.375rem 0.5rem; border-radius: var(--radius-circle);
+  font: inherit; font-size: 0.875rem; color: var(--color-text-secondary);
+}
+.others__toggle:hover { color: var(--color-text); }
+.others__chevron { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 200ms var(--ease-out); }
+.others__toggle[aria-expanded="true"] .others__chevron { transform: rotate(180deg); }
+
+.others__list {
+  list-style: none; padding: 0; margin: 0.75rem 0 0; text-align: left;
+  border: 1px solid var(--color-separator); border-radius: var(--radius-card);
+  background: var(--color-raised); overflow: hidden;
+}
+.others__list[hidden] { display: none; }
+.others__list li + li { border-top: 1px solid var(--color-separator); }
+.others__item {
+  display: flex; align-items: center; gap: 0.875rem;
+  padding: 0.75rem 0.875rem; color: var(--color-text); text-decoration: none;
+  transition: background-color 200ms var(--ease-out);
+}
+.others__item:hover { background: var(--color-fill); }
+.others__tile {
+  width: 2.25rem; height: 2.25rem; border-radius: var(--radius-control); flex: none;
+  display: grid; place-items: center; font-weight: 600; font-size: 0.9375rem;
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 32%, transparent);
+  color: var(--c);
+}
+.others__text { flex: 1; min-width: 0; }
+.others__text b { display: block; font-weight: 600; font-size: 0.9375rem; }
+.others__text span { display: block; font-size: 0.8125rem; color: var(--color-text-secondary); }
+.others__item .icon { width: 1.125rem; height: 1.125rem; color: var(--color-text-tertiary); }
+.others__note { margin-top: 0.625rem; min-height: 1.25em; font-size: 0.8125rem; color: var(--color-text-secondary); }
+
+/* Пустой адрес: поле и кнопка. */
+.link__form { display: flex; gap: 0.5rem; width: 100%; margin-top: 1.75rem; }
+.link__form input {
+  flex: 1; min-width: 0; min-height: 3rem; padding: 0 1.125rem;
+  border: 1px solid var(--color-separator); border-radius: var(--radius-circle);
+  background: var(--color-raised); color: var(--color-text);
+  font: inherit; font-size: 1rem;
+  transition: border-color 200ms var(--ease-out);
+}
+.link__form input::placeholder { color: var(--color-text-tertiary); }
+.link__form input:focus { border-color: var(--accent); outline: none; }
+.link__more { margin-top: 1.25rem; font-size: 0.9375rem; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

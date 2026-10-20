@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ссылка Matrix — Iskra</title>
+  <meta name="description" content="Откройте ссылку на человека или комнату Matrix в Iskra или в другом приложении.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f7f6f1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a08" media="(prefers-color-scheme: dark)">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://s.iskra.wtf/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Iskra">
+  <meta property="og:title" content="Ссылка Matrix — Iskra">
+  <meta property="og:description" content="Откройте ссылку на человека или комнату Matrix в Iskra или в другом приложении.">
+  <meta property="og:image" content="https://iskra.wtf/assets/og.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-cyrillic-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/inter.css">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/link.css">
+  <link rel="modulepreload" href="/assets/vendor/uqr.mjs">
+</head>
+<body>
+  <!-- Одна разметка на все адреса: 404.html — её копия (scripts/sync-404.sh), GitHub Pages
+       отдаёт её на любой путь вроде /@anya:matrix.org. Пути к файлам поэтому абсолютные. -->
+  <header class="nav is-solid" id="nav">
+    <div class="wrap">
+      <a class="brand" href="https://iskra.wtf"><svg viewBox="0 0 747 731" aria-hidden="true"><use href="/assets/sprite.svg#spark"/></svg>Iskra</a>
+      <a class="button button--primary button--small" href="https://iskra.wtf/#download" data-i18n="nav.download">Скачать</a>
+    </div>
+  </header>
+
+  <main class="link">
+    <!-- Человек или комната: всё берётся из адреса, к серверам страница не ходит. -->
+    <section class="link__card" id="target" hidden>
+      <span class="link__avatar" id="avatar" aria-hidden="true"></span>
+      <h1 class="link__name" id="name"></h1>
+      <p class="link__id" id="mxid"></p>
+
+      <figure class="link__qr" id="qr" role="img" aria-label="QR-код ссылки" data-i18n-aria="qr.aria"></figure>
+
+      <div class="link__actions">
+        <a class="button button--primary" id="open-iskra" href="https://iskra.wtf/#download">
+          <svg class="logo" viewBox="0 0 747 731" aria-hidden="true"><use href="/assets/sprite.svg#spark"/></svg>
+          <span data-i18n="open.iskra">Открыть в&nbsp;Искре</span>
+        </a>
+        <a class="button button--plain" id="open-web" href="https://web.iskra.wtf" target="_blank" rel="noopener" data-i18n="open.web">Открыть в&nbsp;Iskra Web</a>
+      </div>
+
+      <div class="others">
+        <button type="button" class="others__toggle" id="others-toggle" aria-expanded="false" aria-controls="others">
+          <span data-i18n="others.toggle">У&nbsp;вас другое приложение?</span>
+          <svg class="others__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <ul class="others__list" id="others" hidden></ul>
+        <p class="others__note" id="others-note" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- Пустой или непонятный адрес: подсказка и поле. -->
+    <section class="link__card" id="empty" hidden>
+      <span class="link__avatar link__avatar--spark" aria-hidden="true"><svg viewBox="0 0 747 731"><use href="/assets/sprite.svg#spark"/></svg></span>
+      <h1 class="link__name" data-i18n="empty.title">Ссылка на&nbsp;Matrix</h1>
+      <p class="link__lead" id="empty-text" data-i18n="empty.body">Вставьте адрес человека или комнаты, и&nbsp;мы&nbsp;сделаем ссылку, которую откроет любое приложение Matrix.</p>
+      <p class="link__lead link__lead--warn" id="empty-bad" hidden data-i18n="empty.bad">Это не&nbsp;похоже на&nbsp;адрес Matrix. Он&nbsp;выглядит так: <code>@anya:matrix.org</code> или <code>#iskra:matrix.org</code>.</p>
+      <form class="link__form" id="form">
+        <label class="visually-hidden" for="address" data-i18n="empty.label">Адрес Matrix</label>
+        <input id="address" name="address" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@anya:matrix.org">
+        <button class="button button--primary" type="submit" data-i18n="empty.go">Открыть</button>
+      </form>
+      <p class="link__more"><a class="more" href="https://iskra.wtf/matrix" data-i18n="empty.matrix">Что такое Matrix</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Iskra App</p>
+      <nav aria-label="Ссылки" data-i18n-aria="footer.links">
+        <a href="https://iskra.wtf" data-i18n="footer.home">Iskra</a>
+        <a href="https://iskra.wtf/matrix" data-i18n="footer.matrix">Что такое Matrix</a>
+        <a href="https://github.com/iskra-app/s.iskra.wtf">GitHub</a>
+        <a href="https://iskra.wtf/privacy" data-i18n="footer.privacy">Конфиденциальность</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Язык / Language">
+        <button type="button" data-lang="ru" lang="ru">Русский</button>
+        <button type="button" data-lang="en" lang="en">English</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/site.js"></script>
+  <script type="module" src="/assets/link.js"></script>
+</body>
+</html>
