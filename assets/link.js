@@ -90,18 +90,18 @@ function otherApps(t, os) {
     : `direct/create?userId=${encodeURIComponent(t.id)}`;
   return [
     {
-      key: 'element', name: mobile ? 'Element X' : 'Element', letter: 'E', color: 'var(--color-text-secondary)',
+      key: 'element', name: mobile ? 'Element X' : 'Element', icon: 'element',
       // На iPhone app.element.io перехватывает само приложение — так делает и matrix.to.
       href: os === 'android' ? `element://${element}` : `https://app.element.io/#/${element}`,
       web: !mobile,
     },
     {
-      key: 'fluffy', name: 'FluffyChat', letter: 'F', color: 'var(--color-text-secondary)',
+      key: 'fluffy', name: 'FluffyChat', icon: 'fluffychat',
       href: mobile ? `im.fluffychat://chat/${t.id}` : 'https://fluffychat.im/web/',
       web: !mobile, copy: !mobile,
     },
     {
-      key: 'cinny', name: 'Cinny', letter: 'C', color: 'var(--color-text-secondary)',
+      key: 'cinny', name: 'Cinny', icon: 'cinny',
       href: `https://app.cinny.in/${cinny}`,
       web: true,
     },
@@ -220,7 +220,7 @@ function renderOthers(t, lang) {
     a.className = 'others__item';
     a.href = app.href;
     if (app.web) { a.target = '_blank'; a.rel = 'noopener'; }
-    a.innerHTML = `<span class="others__tile" style="--c:${app.color}" aria-hidden="true">${app.letter}</span>`
+    a.innerHTML = `<span class="others__icon" style="--icon:url(/assets/apps/${app.icon}.svg)" aria-hidden="true"></span>`
       + `<span class="others__text"><b></b><span></span></span>`
       + '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
     a.querySelector('b').textContent = app.name;
