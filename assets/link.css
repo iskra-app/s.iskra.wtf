@@ -105,6 +105,8 @@ body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100
   font: inherit; font-size: 1rem;
   transition: border-color 200ms var(--ease-out);
 }
+/* .button в site.css — для ссылок; у <button> снимаем рамку и шрифт браузера. */
+.link__form .button { border: 0; font-family: inherit; cursor: pointer; }
 .link__form input::placeholder { color: var(--color-text-tertiary); }
 .link__form input:focus { border-color: var(--accent); outline: none; }
 .link__more { margin-top: 1.25rem; font-size: 0.9375rem; }
