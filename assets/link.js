@@ -90,18 +90,18 @@ function otherApps(t, os) {
     : `direct/create?userId=${encodeURIComponent(t.id)}`;
   return [
     {
-      key: 'element', name: mobile ? 'Element X' : 'Element', letter: 'E', color: 'var(--green)',
+      key: 'element', name: mobile ? 'Element X' : 'Element', letter: 'E', color: 'var(--color-text-secondary)',
       // На iPhone app.element.io перехватывает само приложение — так делает и matrix.to.
       href: os === 'android' ? `element://${element}` : `https://app.element.io/#/${element}`,
       web: !mobile,
     },
     {
-      key: 'fluffy', name: 'FluffyChat', letter: 'F', color: 'var(--violet)',
+      key: 'fluffy', name: 'FluffyChat', letter: 'F', color: 'var(--color-text-secondary)',
       href: mobile ? `im.fluffychat://chat/${t.id}` : 'https://fluffychat.im/web/',
       web: !mobile, copy: !mobile,
     },
     {
-      key: 'cinny', name: 'Cinny', letter: 'C', color: 'var(--cyan)',
+      key: 'cinny', name: 'Cinny', letter: 'C', color: 'var(--color-text-secondary)',
       href: `https://app.cinny.in/${cinny}`,
       web: true,
     },
