@@ -44,7 +44,7 @@ body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100
   overflow-wrap: anywhere;
 }
 .link__lead { margin-top: 0.75rem; color: var(--color-text-secondary); text-wrap: balance; }
-.link__lead--warn { color: var(--orange); }
+.link__lead--warn { color: var(--warn); }
 .link__lead code { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 0.9em; background: var(--color-fill); padding: 0.1em 0.35em; border-radius: 0.3em; color: var(--color-text); }
 
 /* QR — как QrCode в iskra-web: чёрным по белому при любой теме, модули квадратами. */
@@ -107,7 +107,7 @@ body { display: flex; flex-direction: column; min-height: 100vh; min-height: 100
 /* .button в site.css — для ссылок; у <button> снимаем рамку и шрифт браузера. */
 .link__form .button { border: 0; font-family: inherit; cursor: pointer; }
 .link__form input::placeholder { color: var(--color-text-tertiary); }
-.link__form input:focus { border-color: var(--accent); outline: none; }
+.link__form input:focus { border-color: var(--accent-strong); outline: none; }
 .link__more { margin-top: 1.25rem; font-size: 0.9375rem; }
 
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
