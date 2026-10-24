@@ -21,6 +21,9 @@
 - `assets/qr.js` — QR-код, порт `iskra-web/src/design/qr.ts`; `assets/vendor/uqr.mjs` — [uqr](https://github.com/unjs/uqr) (MIT)
 - `assets/site.css`, `site.js`, `fonts/`, `sprite.svg` — общие с iskra.wtf, копии оттуда
 - `.well-known/apple-app-site-association` — Universal Links: с установленной Искрой ссылки открываются сразу в приложении
+- `.well-known/assetlinks.json` — App Links на Android (пакет `wtf.iskra`). **Список отпечатков пуст, пока у автора нет ключа
+  релиза**: `scripts/set-assetlinks-cert.sh AA:BB:…` впишет SHA-256 сертификата подписи (тот же, что в описании релиза), после чего
+  ссылки открываются сразу в Искре. Пока пусто, Android спросит, чем открыть
 
 Локально нужен сервер, который, как Pages, отдаёт `404.html` на неизвестные пути.
 
